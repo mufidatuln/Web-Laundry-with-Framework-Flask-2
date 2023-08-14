@@ -1,0 +1,54 @@
+{%extends 'base_manajer.html' %}
+{%block title%} Ubah Data Karyawan {%endblock%}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ubah Data Karyawan</title>
+
+  <!-- CSS Area -->
+  <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.CSS')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.CSS')}}" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  
+</head>
+<div class="">    
+    <form action="/update_karyawan/" method="POST">
+      <div class="form-group">
+          <label>ID Karyawan</label>
+          <input value="{{row.0}}" type="hidden" name="id_karyawan" class="form-control" id="exampleFormControlInput1" placeholder="Enter Email">
+      </div>
+
+      <div class="form-group">
+          <label>Kode Karyawan</label>
+          <input value="{{row.1}}" type="text" name="kode_karyawan" class="form-control" id="exampleFormControlInput1" placeholder="Enter Karyawan">
+      </div>
+
+      <div class="form-group">
+        <label>Nama</label>
+        <input value="{{row.2}}" type="text" name="nama" class="form-control" id="exampleFormControlInput1" placeholder="Enter Nama">
+      </div>
+
+      <div class="form-group">
+        <label>Kontak</label>
+        <input value="{{row.3}}" type="text" name="kontak" class="form-control" id="exampleFormControlInput1" placeholder="Enter Kontak">
+      </div>
+
+      <div class="form-group">
+        <label>Alamat</label>
+        <input value="{{row.4}}" type="text" name="alamat" class="form-control" id="exampleFormControlInput1" placeholder="Enter Alamat">
+      </div>
+
+      <div class="form-group">
+         <label>Jam Kerja</label>
+         <input value="{{row.5}}" type="text" name="jam_kerja" class="form-control" id="exampleFormControlInput1" placeholder="Enter Jam Kerja">
+      </div>
+
+      <div class="form-group">
+        <label>Gaji</label>
+        <input value="{{row.6}}" type="text" name="gaji" class="form-control" id="exampleFormControlInput1" placeholder="Enter Jam Kerja">
+     </div>
+
+          <button type="submit" class="btn btn-success mb-2">Update</button>
+    </form>

@@ -1,0 +1,184 @@
+{%extends 'base_manajer.html' %}
+{%block title%} Data Karyawan {%endblock%}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Karyawan</title>
+
+  <!-- CSS Area -->
+  <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.CSS')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.CSS')}}" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  
+</head>
+{%block content%}
+<div id="main" class="main-content">
+  <div class="container">
+  <br>
+      <div class="col-header">
+        <p class="judul-sm"><b>Halaman Manage Karyawan</b></p>
+      </div>
+      <div class="col txt-right">
+      <button class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">+ Karyawan</button>
+      <a href="/gaji_pokok/" class="btn btn-primary">Sallary</a>
+      </div>
+<br>
+
+<!-- Penambahan Karyawan -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+      <div class="modal-content">
+
+          <div class="modal-header">
+              <h5 class="modal-title text-primary" style="align-content: center;">Silahkan Tambahkan Karyawan</h5>    
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            
+
+          <div class="modal-body">  
+              <form action="{{url_for('tambah_karyawan')}}" method="POST">
+                  <div class="form-group">
+                    <label>ID Karyawan</label>
+                    <input type="text" name="id_karyawan" class="form-control" id="" placeholder="Enter ID Karyawan">
+                  </div>
+
+                  <div class="form-group">
+                      <label>Kode Karyawan</label>
+                      <input type="text" name="kode_karyawan" class="form-control" id="" placeholder="Enter Kode Karyawan">
+                  </div>
+
+                  <div class="form-group">
+                    <label>Nama</label>
+                    <input type="text" name="nama" class="form-control" id="" placeholder="Enter Nama">
+                </div>
+
+                <div class="form-group">
+                  <label>Kontak</label>
+                  <input type="text" name="kontak" class="form-control" id="" placeholder="Enter Kontak">
+              </div>
+
+              <div class="form-group">
+                <label>Alamat</label>
+                <input type="text" name="alamat" class="form-control" id="" placeholder="Enter Alamat">
+            </div>
+
+            <div class="form-group">
+              <label>Jam Kerja</label>
+              <input type="text" name="jam_kerja" class="form-control" id="" placeholder="Enter Jam Kerja">
+          </div>
+                    <button type="submit" class="btn btn-primary mb-2">Save</button>
+               
+                </form>
+          </div>
+      </div>
+  </div>
+</div>
+ 
+<div class="card-body">
+  <div class="tabel-kontainer">
+     <table class="tabel-karyawan">
+      <thead>
+        <tr>
+          <th class="sticky">Id Karyawan</th>
+          <th class="sticky">Kode Karyawan</th>
+          <th class="sticky">Nama</th>
+          <th class="sticky">Kontak</th>
+          <th class="sticky">Alamat</th>
+          <th class="sticky">Jam Kerja</th>
+          <th class="sticky">Gaji</th>
+          <th class="sticky" style="text-align: center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in dt_karyawan %}
+        <tr>
+          <td>{{row.0}}</td>
+          <td>{{row.1}}</td>
+          <td>{{row.2}}</td>
+          <td>{{row.3}}</td>
+          <td>{{row.4}}</td>
+          <td>{{row.5}}</td>
+          <td>{{row.6}}</td>
+          <td>
+            <a href="/update_karyawan/{{row.0}}" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
+            <a href="/hapus_karyawan/{{ row.0 }}" onclick="return confirm('Are Sure Want To Deleted ?')" class="btn btn-danger btn-sm">Delete</a>
+          </td>
+        </tr>
+
+        <!-- Update Karyawan -->
+        <div id="modaledit{{row.0}}" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+       
+                    <div class="modal-header">
+                        <h5 class="modal-title text-primary" style="align-content: center;">Update Karyawan Details</h5>    
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      
+                    <div class="modal-body">    
+                        <form action="/update_karyawan/" method="POST">
+                          <div class="form-group">
+                              <label>ID Karyawan</label>
+                              <input value="{{row.0}}" type="hidden" name="id_karyawan" class="form-control" id="exampleFormControlInput1" placeholder="Enter Email">
+                          </div>
+
+                          <div class="form-group">
+                              <label>Kode Karyawan</label>
+                              <input value="{{row.1}}" type="text" name="kode_karyawan" class="form-control" id="exampleFormControlInput1" placeholder="Enter Karyawan">
+                          </div>
+
+                          <div class="form-group">
+                            <label>Nama</label>
+                            <input value="{{row.2}}" type="text" name="nama" class="form-control" id="exampleFormControlInput1" placeholder="Enter Nama">
+                          </div>
+
+                          <div class="form-group">
+                            <label>Kontak</label>
+                            <input value="{{row.3}}" type="text" name="kontak" class="form-control" id="exampleFormControlInput1" placeholder="Enter Kontak">
+                          </div>
+
+                          <div class="form-group">
+                            <label>Alamat</label>
+                            <input value="{{row.4}}" type="text" name="alamat" class="form-control" id="exampleFormControlInput1" placeholder="Enter Alamat">
+                          </div>
+
+                          <div class="form-group">
+                             <label>Jam Kerja</label>
+                             <input value="{{row.5}}" type="text" name="jam_kerja" class="form-control" id="exampleFormControlInput1" placeholder="Enter Jam Kerja">
+                          </div>
+
+                          <!-- <div class="form-group">
+                            <label>Gaji</label>
+                            <input value="{{row.6}}" type="text" name="gaji" class="form-control" id="exampleFormControlInput1" placeholder="Enter Jam Kerja">
+                         </div> -->
+
+                              <button type="submit" class="btn btn-success mb-2">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Edit Karyawan Modal -->
+
+        {% endfor %}
+    </tbody>
+     </table>
+  </div>
+</div>
+
+</div>
+</div>
+<br>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>    
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+
+{%endblock%}

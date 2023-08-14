@@ -1,0 +1,70 @@
+{%extends 'base_kasir.html'%} 
+
+{%block title%}Dashboard Kasir{%endblock%}
+{%block content%}
+<div id="main" class="main-content">
+    <div class="container">
+        <div class="baris">
+            <div class="selamat-datang">
+                <div class="col-header">
+                    <p class="judul-sm">Selamat Datang </p>
+                    <h2 class="judul-md">Hallo Admin ! Have a nice day 😊</h2>
+                </div>
+            </div>
+        </div>
+        <div class="baris">
+            <div class="col col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-panel">
+                            <div class="panel-header">
+                                <p>Total Pelanggan</p>
+                                <h2>{{jml_pelanggan}}</h2>
+                            </div>
+                            
+                            <div class="panel-icon">
+                                <img src="{{ url_for('static',filename='img/orang.png')}}" alt="pelanggan" height="48">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-panel">
+                            <div class="panel-header">
+                                <p>Jumlah Pesanan</p>
+                                <h2>{{jml_pesanan}}</h2>
+                            </div>
+
+                            <div class="panel-icon">
+                                <img src="{{ url_for('static',filename='img/order-now.png')}}" alt="paket" height="48">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-panel">
+                            <div class="panel-header">
+                                <p>Pesanan Belum Selesai</p>
+                                <h2>{{belum_selesai}}</h2>
+                            </div>
+
+                            <div class="panel-icon">
+                                <img src="{{ url_for('static',filename='img/jml_paket.png')}}" alt="paket" height="48">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+{%endblock%}

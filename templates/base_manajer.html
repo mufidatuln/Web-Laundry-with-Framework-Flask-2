@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{%block title%}{%endblock%}</title>
+    <!-- CSS Area -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.CSS')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.CSS')}}" />
+    {%block head%}{%endblock%}
+  </head>
+  <body>
+    <!-- Navbar -->
+      <div class="container-fluid px-3 py-3" style="background-color: #21406f">
+        <div class="col-header txt-right"><a class="btn btn-sm btn-danger" href="/logout">Sign out</a></div>
+        <a class="navbar-brand px-4" style="color: white; font-size: x-large; font-weight: bolder" href="{{url_for('dash_manajer')}}">Dashboard Manajer</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <header>
+        <div id="nav-mini">
+          <a href="/M.riwayat_pesan/" class="link-nav">Riwayat Transaksi</a>
+          <a href="/data_karyawan/" class="link-nav">Manage Karyawan</a>
+          <a href="/M.data_pelanggan/" class="link-nav">Daftar Pelanggan</a>
+          <a href="/kelola_paket/" class="link-nav">Kelola Paket</a>
+          <a href="/kelola_user/" class="link-nav">Kelola User</a>
+        </div>
+      </header>
+
+      
+    {%block content%}{%endblock%}
+  </body>
+</html>

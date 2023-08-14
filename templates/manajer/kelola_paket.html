@@ -1,0 +1,129 @@
+{%extends 'base_manajer.html' %}
+{%block title%} Kelola Paket {%endblock%}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kelola Paket</title>
+
+  <!-- CSS Area -->
+  <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.CSS')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.CSS')}}" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  
+</head>
+{%block content%}
+<!-- Penambahan Paket -->
+<div id="main" class="main-content">
+<div class="container">
+<br>
+    <div class="col-header">
+      <p class="judul-sm"><b>Kelola Paket</b></p>
+    </div>
+    <div class="col txt-right">
+        <button class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">+ Paket</button>
+    </div>
+<br>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+      <div class="modal-content">
+
+          <div class="modal-header">
+              <h5 class="modal-title text-primary" style="align-content: center;">Silahkan Tambahkan Paket</h5>    
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            
+
+          <div class="modal-body">  
+              <form action="{{url_for('tambah_paket')}}" method="POST">
+                  <div class="form-group">
+                    <label>Nama Paket</label>
+                    <input type="text" name="nama_paket" class="form-control" id="" placeholder="Masukan Nama Paket">
+                  </div>
+
+                  <div class="form-group">
+                      <label>Harga</label>
+                      <input type="text" name="harga" class="form-control" id="" placeholder="Enter password">
+                  </div>
+                    <button type="submit" class="btn btn-primary mb-2">Save</button>
+               
+                </form>
+          </div>
+      </div>
+  </div>
+</div>
+ 
+<div class="card-body">
+  <div class="tabel-kontainer">
+     <table class="tabel-karyawan">
+      <thead>
+        <tr>
+          <th class="sticky">Nama Paket</th>
+          <th class="sticky">Harga</th>
+          <th class="sticky" style="text-align: center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in paket %}
+        <tr>
+          <td>{{row.0}}</td>
+          <td>{{row.1}}</td>
+          <td>
+            <a href="/update_paket/{{row.0}}" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
+            <a href="/hapus_paket/{{row.0 }}" onclick="return confirm('Are Sure Want To Deleted ?')" class="btn btn-danger btn-sm">Delete</a>
+          </td>
+        </tr>
+
+        <!-- Update Paket -->
+        <div id="modaledit{{row.0}}" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+       
+                    <div class="modal-header">
+                        <h5 class="modal-title text-primary" style="align-content: center;">Update Paket Details</h5>    
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      
+    
+                    <div class="modal-body">    
+                        <form action="/update_paket/" method="POST">
+                          <div class="form-group">
+                              <label>Nama Paket</label>
+                              <input value="{{row.0}}" type="text" name="nama_paket" class="form-control" id="exampleFormControlInput1" placeholder="Nama Paket">
+                          </div>
+
+                          <div class="form-group">
+                              <label>Harga</label>
+                              <input value="{{row.1}}" type="text" name="harga" class="form-control" id="exampleFormControlInput1" placeholder="Enter Password">
+                          </div>
+
+                              <button type="submit" class="btn btn-success mb-2">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Edit Paket -->
+
+        {% endfor %}
+    </tbody>
+     </table>
+  </div>
+</div>
+
+</div>
+</div>
+<br>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>    
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+
+{%endblock%}
